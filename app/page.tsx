@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 type Category = {
@@ -22,14 +21,19 @@ export default async function HomePage() {
   const data: CategoryResponse = await res.json();
 
   return (
-    <div className="HomePage">
-      <h1>Meal  Categories</h1>
-      <ul>
-        {data.categories.map((c) => <li key={c.idCategory}>
-          <Image src={c.strCategoryThumb} alt={c.strCategoryDescription} />
-          <h4>{c.strCategoryDescription}</h4>
-          <p>{c.strCategory}</p>
-          <Link href="">View detail...</Link>
+    <div className="HomePage container mx-auto" >
+      <h1 className="text-center text-3xl text-green-900 font-bold italic p-4">Meal  Categories</h1>
+      <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {data.categories.map((c) => <li
+          key={c.idCategory}
+          className="shadow-md p-4 bg-green-100 rounded-md"
+        >
+          <img className="w-full" src={c.strCategoryThumb} alt={c.strCategoryDescription} />
+          <h4 className="text-green-700 font-bold text-2xl ">{c.strCategory}</h4>
+          <p className="text-green-600">{c.strCategoryDescription.length > 200 ?
+            c.strCategoryDescription.slice(0, 200) + "..." :
+            c.strCategoryDescription}</p>
+          <Link className="text-green-900 p-4" href={`/category/${c.strCategory}`}>View detail...</Link>
         </li>)}
       </ul>
     </div>
