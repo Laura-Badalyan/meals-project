@@ -23,17 +23,17 @@ export default async function HomePage() {
   return (
     <div className="HomePage container mx-auto" >
       <h1 className="text-center text-3xl text-green-900 font-bold italic p-4">Meal  Categories</h1>
-      <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 justify-items-center">
         {data.categories.map((c) => <li
           key={c.idCategory}
           className="shadow-md p-4 bg-green-100 rounded-md"
         >
           <img className="w-full" src={c.strCategoryThumb} alt={c.strCategoryDescription} />
           <h4 className="text-green-700 font-bold text-2xl ">{c.strCategory}</h4>
-          <p className="text-green-600">{c.strCategoryDescription.length > 200 ?
+          <p className="text-green-600 py-2">{c.strCategoryDescription.length > 200 ?
             c.strCategoryDescription.slice(0, 200) + "..." :
             c.strCategoryDescription}</p>
-          <Link className="text-green-900 p-4" href={`/category/${c.strCategory}`}>View detail...</Link>
+          <Link className="text-green-900 font-bold px-4 border-2 bg-green-50 rounded-md hover:bg-green-900 hover:text-white " href={`/category/${c.strCategory}`}>View details</Link>
         </li>)}
       </ul>
     </div>
