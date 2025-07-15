@@ -37,8 +37,6 @@ export default async function MealPage({ params }: Params) {
     }
 
     const meal = data.meals[0];
-    console.log("meal", meal);
-
 
     const ingredients: { ingredient: string, measure: string }[] = [];
 
