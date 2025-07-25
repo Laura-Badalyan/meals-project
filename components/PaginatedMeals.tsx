@@ -58,11 +58,16 @@ export default function PaginatedMeals({ meals }: Props) {
                 {
                     current?.map(item => <li
                         key={item.idMeal}
-                        className=" border-4 border-amber-200 rounded-lg p-6 bg-amber-50 flex items-center"
+                        className=" border-4 border-amber-200 rounded-lg p-6 bg-amber-50"
                     >
-                        <Link href={`/meal/${item.idMeal}`}>
-                            <Image className="" src={item.strMealThumb} alt={item.strMeal} layout="fill" />
-                            <p className="pt-4 font-bold text-xl text-center text-amber-800">{item.strMeal}</p>
+                        <Link className=" flex flex-col items-center justify-between" href={`/meal/${item.idMeal}`}>
+                            <Image
+                                src={item.strMealThumb}
+                                alt={item.strMeal}
+                                width={200}
+                                height={200}
+                            />                           
+                             <p className="pt-4 font-bold text-xl text-center text-amber-800">{item.strMeal}</p>
                         </Link>
                     </li>)
                 }

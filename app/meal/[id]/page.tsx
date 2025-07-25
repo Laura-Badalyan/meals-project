@@ -1,3 +1,4 @@
+import Image from "next/image"
 
 type Params = {
     params: Promise<{ id: string }>
@@ -63,9 +64,11 @@ export default async function MealPage({ params }: Params) {
                     rel="noopener noreferrer"
                     className="block"
                 >
-                    <img
+                    <Image
                         src={meal.strMealThumb}
                         alt={meal.strMeal}
+                        width={200}
+                        height={200}
                         className="w-full max-w-md mx-auto rounded-[50%] shadow-md mb-4"
                     />
                 </a>
