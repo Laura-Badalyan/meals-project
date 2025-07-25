@@ -1,4 +1,4 @@
-import PaginatedMeals from "@/app/components/PaginatedMeals";
+import PaginatedMeals from "@/components/PaginatedMeals";
 
 type Meal = {
     strMeal: string;

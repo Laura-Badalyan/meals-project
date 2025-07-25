@@ -1,5 +1,6 @@
 'use client'
 
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
@@ -60,7 +61,7 @@ export default function PaginatedMeals({ meals }: Props) {
                         className=" border-4 border-amber-200 rounded-lg p-6 bg-amber-50 flex items-center"
                     >
                         <Link href={`/meal/${item.idMeal}`}>
-                            <img className="" src={item.strMealThumb} alt={item.strMeal} />
+                            <Image className="" src={item.strMealThumb} alt={item.strMeal} layout="fill" />
                             <p className="pt-4 font-bold text-xl text-center text-amber-800">{item.strMeal}</p>
                         </Link>
                     </li>)
