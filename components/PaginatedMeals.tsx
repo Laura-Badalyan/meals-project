@@ -66,31 +66,34 @@ export default function PaginatedMeals({ meals }: Props) {
                                 alt={item.strMeal}
                                 width={200}
                                 height={200}
-                            />                           
-                             <p className="pt-4 font-bold text-xl text-center text-amber-800">{item.strMeal}</p>
+                            />
+                            <p className="pt-4 font-bold text-xl text-center text-amber-800">{item.strMeal}</p>
                         </Link>
                     </li>)
                 }
             </ul>
-            <div className="flex justify-center w-full p-8 text-2xl text-amber-800">
-                <button
-                    onClick={prev}
-                    disabled={page === 1}
-                    className=" cursor-pointer disabled:text-amber-200 disabled:cursor-not-allowed"
-                >{'<'}</button>
-                {pagesArr.map(p => <button
-                    key={p}
-                    className={p === page ? " cursor-pointer px-3 border-2 border-amber-400 rounded-full bg-amber-50" : 'cursor-pointer p-1'}
-                    onClick={() => setPage(p)}
-                >
-                    {p}
-                </button>)}
-                <button
-                    onClick={next}
-                    disabled={page === totalPages}
-                    className=" cursor-pointer disabled:text-amber-200 disabled:cursor-not-allowed"
-                >{'>'}</button>
-            </div>
+            {pagesArr.length > 0 && (
+                <div className="flex justify-center w-full p-8 text-2xl text-amber-800">
+                    <button
+                        onClick={prev}
+                        disabled={page === 1}
+                        className=" cursor-pointer disabled:text-amber-200 disabled:cursor-not-allowed"
+                    >{'<'}</button>
+                    {pagesArr.map(p => <button
+                        key={p}
+                        className={p === page ? " cursor-pointer px-3 border-2 border-amber-400 rounded-full bg-amber-50" : 'cursor-pointer p-1'}
+                        onClick={() => setPage(p)}
+                    >
+                        {p}
+                    </button>)}
+                    <button
+                        onClick={next}
+                        disabled={page === totalPages}
+                        className=" cursor-pointer disabled:text-amber-200 disabled:cursor-not-allowed"
+                    >{'>'}</button>
+                </div>
+            )}
+
         </div>
     )
 }
