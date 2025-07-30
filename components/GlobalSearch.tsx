@@ -2,40 +2,38 @@
 import { useSearch } from '@/context/SearchContext'
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 
 export const GlobalSearch = () => {
   const { query, setQuery, meals, isLoading } = useSearch();
   const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLInputElement>(null)
 
+  useEffect(() => {
+    const onClick = (e:MouseEvent) => {
+      if(ref.current && !ref.current.contains(e.target as Node)){
+        setOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', onClick)
+
+    return () => document.removeEventListener('mousedown', onClick)
+  }, [])
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
     setOpen(true);
   }
 
-  let blurTimeout: NodeJS.Timeout;
-
-  const handleFocus = () => {
-    clearTimeout(blurTimeout)
-    setOpen(true)
-  }
-
-  const handleBlur = () => {
-    blurTimeout = setTimeout(() => {
-      setOpen(false)
-    }, 150)
-  }
 
   return (
-    <div className="relative w-full max-w-xl mx-auto ">
+    <div ref={ref} className="relative w-full max-w-xl mx-auto ">
       <input
         type="text"
         placeholder="Search Meal..."
         value={query}
         onChange={handleInputChange}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
         className="w-full text-lg md:text-md border border-amber-500 rounded-t-2xl px-4 py-2 outline-none focus:ring-2 focus:ring-amber-400 shadow-sm"
       />
       {query && (
