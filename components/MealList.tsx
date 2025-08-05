@@ -14,7 +14,8 @@ type Props = {
     meals: Meal[]
 }
 
-export default function PaginatedMeals({ meals }: Props) {
+export function MealList({ meals }: Props) {
+
     const [page, setPage] = useState(1);
     const itemsPerPage = 9;
     const [query, setQuery] = useState('');
