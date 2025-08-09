@@ -1,8 +1,9 @@
 'use client'
 
 import Link from "next/link"
-import { GlobalSearch } from "./GlobalSearch"
+// import { GlobalSearch } from "./GlobalSearch"
 import { Menu } from "./Menu"
+import { GlobalSearch2 } from "./GlobalSearch2"
 
 export const Header = () => {
   return (
@@ -15,7 +16,8 @@ export const Header = () => {
       </div>
 
       <div>
-        <GlobalSearch />
+        {/* <GlobalSearch /> */}
+        <GlobalSearch2 />
       </div>
     </div>
   )

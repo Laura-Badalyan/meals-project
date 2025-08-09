@@ -1,6 +1,6 @@
 
-import { CategoryList } from "@/components/CategoryList";
-import { Filters } from "@/components/Filters";
+import { CategoryList } from "@/components/Content/CategoryList";
+import { Filters } from "@/components/Header/Filters";
 
 type Category = {
   idCategory: string;

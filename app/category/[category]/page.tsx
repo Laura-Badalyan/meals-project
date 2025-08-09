@@ -1,5 +1,5 @@
 
-import { MealList } from '@/components/MealList';
+import { MealList } from '@/components/Content/MealList';
 type Meal = {
     strMeal: string;
     strMealThumb: string;

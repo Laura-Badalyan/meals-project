@@ -1,17 +1,26 @@
 'use client'
-import { useSearch } from '@/context/SearchContext'
+
+type Meal = {
+  idMeal: string;
+  strMeal: string;
+  strMealThumb: string
+}
+
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
-export const GlobalSearch = () => {
-  const { query, setQuery, meals, isLoading } = useSearch();
-  const [open, setOpen] = useState(false);
+export function GlobalSearch2() {
+
   const ref = useRef<HTMLInputElement>(null)
+  const [meals, setMeals] = useState<Meal[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
-    const onClick = (e:MouseEvent) => {
-      if(ref.current && !ref.current.contains(e.target as Node)){
+    const onClick = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
         setOpen(false)
       }
     }
@@ -21,7 +30,45 @@ export const GlobalSearch = () => {
     return () => document.removeEventListener('mousedown', onClick)
   }, [])
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  useEffect(() => {
+    if (query.trim().length === 0) {
+      setMeals([]);
+      return;
+    }
+
+    setIsLoading(true);
+    const ac = new AbortController();
+
+    const timer = setTimeout(async () => {
+      try {
+        const res = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`, {
+          signal: ac.signal // հարցումը ընդհատելու համար
+        });
+        if (!res.ok) throw new Error("Error fetched data");
+
+        const data = await res.json();
+        setMeals(data.meals || []);
+
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          console.error(error.message);
+        } else {
+          console.error('Unknown error', error);
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    }, 300);
+
+    return () => {
+      clearTimeout(timer);
+      ac.abort();
+    };
+
+  }, [query]);
+
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
     setOpen(true);
   }
@@ -78,5 +125,4 @@ export const GlobalSearch = () => {
       )}
     </div>
   );
-
 }
