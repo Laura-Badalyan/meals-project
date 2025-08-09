@@ -45,6 +45,7 @@ export function Meal({ ingredients, meal }: Props) {
                         alt={meal.strMeal}
                         width={200}
                         height={200}
+                        priority
                         className="w-full max-w-md mx-auto rounded-[50%] shadow-md mb-4"
                     />
                 </a>

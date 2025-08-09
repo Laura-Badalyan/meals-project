@@ -29,6 +29,7 @@ export function CategoryList({ categories }: CategoryResponse) {
                         alt={c.strCategoryDescription}
                         width={300}
                         height={300}
+                        priority
                     />
                     <h4 className="text-green-700 font-bold text-2xl ">{c.strCategory}</h4>
                     <p className="text-green-600 py-2">{
@@ -56,6 +57,7 @@ export function CategoryList({ categories }: CategoryResponse) {
                     alt={selectedCategory.strCategory}
                     width='300'
                     height='50'
+                    priority
                 />
                 <h4 className=' text-green-50 font-bold py-6'>{selectedCategory.strCategory}</h4>
                 <p>{selectedCategory.strCategoryDescription}</p>

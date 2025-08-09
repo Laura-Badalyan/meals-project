@@ -66,6 +66,7 @@ export const GlobalSearch = () => {
                     alt={meal.strMeal}
                     width={50}
                     height={50}
+                    priority
                     className="rounded-full shadow-md"
                   />
                   <p className="text-lg font-medium text-gray-800">

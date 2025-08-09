@@ -67,6 +67,7 @@ export function MealList({ meals }: Props) {
                                 alt={item.strMeal}
                                 width={200}
                                 height={200}
+                                priority
                             />
                             <p className="pt-4 font-bold text-xl text-center text-amber-800">{item.strMeal}</p>
                         </Link>
